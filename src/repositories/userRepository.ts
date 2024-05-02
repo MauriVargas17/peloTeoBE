@@ -6,6 +6,7 @@ export type UserRepository = Repository<User> & {
     createUser: (userData: User) => Promise<User>;
     findAllUsers: () => Promise<User[]>;
     findUserById: (id: number) => Promise<User | null>;
+    findUserByEmail: (email: string) => Promise<User | null>;
     updateUser: (id: number, userData: Partial<User>) => Promise<User>;
     deleteUser: (id: number) => Promise<void | User>;
 };
@@ -22,6 +23,10 @@ export const userRepository: UserRepository = AppDataSource.getRepository(User).
 
     findUserById(id: number): Promise<User | null> {
         return this.findOneBy({ id }); 
+    },
+
+    findUserByEmail(email): Promise<User | null> {
+        return this.findOneBy({ email });
     },
 
     updateUser(id: number, userData: Partial<User>): Promise<User> {
