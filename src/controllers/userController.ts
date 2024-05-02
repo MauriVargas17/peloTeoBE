@@ -32,10 +32,28 @@ export class UserController {
         } catch (error: any) {
             return res.status(500).json({ message: error.message });
         }
-    };
+    }; 
+
+    getUserByEmail = async (req: Request, res: Response): Promise<Response> => {
+        try {
+            const user = await this.userService.getUserByEmail(req.body.email);
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            return res.json(user);
+        } catch (error: any) {
+            return res.status(500).json({ message: error.message });
+        }
+    }
 
     updateUser = async (req: Request, res: Response): Promise<Response> => {
         try {
+            if (req.body.email) {
+                const isEmailInUse = await this.userService.getUserByEmail(req.body.email) !== null;
+                if (isEmailInUse) {
+                    return res.status(400).json({ message: 'Email already in use' });
+                } 
+            }
             const user = await this.userService.updateUser(parseInt(req.params.id), req.body);
             return res.json(user);
         } catch (error: any) {
