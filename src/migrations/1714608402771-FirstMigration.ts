@@ -6,12 +6,50 @@ export class FirstMigration1714608402771 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         const table = new Table({
             name: definition.collection,
-            columns: definition.cols.map(col => ({
-                name: col,
-                type: this.getColumnType(col), 
-                isNullable: this.isNullable(col),
-                isPrimary: col === 'id', 
-            }))
+            columns: [
+                {
+                    name: "id",
+                    type: "int",
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: "increment"
+                },
+                {
+                    name: "firstName",
+                    type: "varchar",
+                    length: "100",
+                    isNullable: true
+                },
+                {
+                    name: "lastName",
+                    type: "varchar",
+                    length: "100",
+                    isNullable: true
+                },
+                {
+                    name: "email",
+                    type: "varchar",
+                    length: "255",
+                    isNullable: false,
+                    isUnique: true
+                },
+                {
+                    name: "password",
+                    type: "varchar",
+                    isNullable: false
+                },
+                {
+                    name: "createdAt",
+                    type: "timestamp",
+                    default: "CURRENT_TIMESTAMP"
+                },
+                {
+                    name: "updatedAt",
+                    type: "timestamp",
+                    default: "CURRENT_TIMESTAMP",
+                    onUpdate: "CURRENT_TIMESTAMP"
+                }
+            ]
         });
 
         await queryRunner.createTable(table);
@@ -19,25 +57,6 @@ export class FirstMigration1714608402771 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable(definition.collection);
-    }
-
-    private getColumnType(colName: string): string {
-        const typeMapping: {[key: string]: string} = {
-            id: "int",
-            firstName: "varchar",
-            lastName: "varchar",
-            email: "varchar",
-            password: "varchar",
-            createdAt: "timestamp",
-            updatedAt: "timestamp"
-        };
-
-        return typeMapping[colName] || "varchar";
-    }
-
-    private isNullable(colName: string): boolean {
-        const nullableFields: string[] = ['firstName', 'lastName'];
-        return nullableFields.includes(colName);
     }
 
 }
