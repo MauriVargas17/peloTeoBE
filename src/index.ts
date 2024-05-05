@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from 'express';
+import cors from 'cors';
 import { AppDataSource } from "./data-source";
 import { userRepository } from './repositories/userRepository'; 
 import { UserService } from './services/userService';
@@ -12,6 +13,11 @@ import { activityRoutes } from './routes/activityRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 AppDataSource.initialize().then(async () => {
     console.log("Database connection established.");
