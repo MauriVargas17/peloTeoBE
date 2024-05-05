@@ -29,14 +29,14 @@ export class SecondMigration2345624365751 implements MigrationInterface {
                 {
                     name: "latitude",
                     type: "decimal",
-                    precision: 10,
+                    precision: 9,
                     scale: 6,
                     isNullable: false,
                 },
                 {
                     name: "longitude",
                     type: "decimal",
-                    precision: 10,
+                    precision: 9,
                     scale: 6,
                     isNullable: false,
                 },
