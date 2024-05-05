@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "22c1584c-39e3-4fa2-8ba0-6f89e2c4a628",
+		"name": "peloTeo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22945788"
+	},
+	"item": [
+		{
+			"name": "Get all activities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create activity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Morning Jog\",\r\n    \"sport\": \"Running\",\r\n    \"longitude\": 15.1478,\r\n    \"latitude\": 17.16587,\r\n    \"google_location\": \"https://maps.google.com/central_park\",\r\n    \"time_init\": \"07:00 AM\",\r\n    \"time_end\": \"08:00 AM\",\r\n    \"owner\": \"John Doe\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/activity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get activities by owner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activity/owner/John Doe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity",
+						"owner",
+						"John Doe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get activity by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activity/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete activity",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/activity/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"activity",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
