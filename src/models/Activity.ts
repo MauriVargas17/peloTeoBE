@@ -11,8 +11,11 @@ export class Activity {
     @Column({ type: "varchar", length: 100 })
     sport?: string;
 
-    @Column({ type: "varchar", length: 255 })
-    location?: string;
+    @Column({type: "decimal", precision: 10, scale: 6, default: 0})
+    latitude?: string;
+
+    @Column({type: "decimal", precision: 10, scale: 6, default: 0})
+    longitude?: string;
 
     @Column({ type: "varchar", length: 255 })
     google_location?: string;
