@@ -35,6 +35,7 @@ AppDataSource.initialize().then(async () => {
     app.use(express.json());
     app.use('/users', routes);
     app.use('/activity', actRoutes);
+    console.log('test')''
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }).catch(error => {
