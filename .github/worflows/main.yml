@@ -1,6 +1,6 @@
 name: CI/CD pipeline for peloTeo Backend
 
-on:
+'on':
   pull_request:
     branches:
       - prod
