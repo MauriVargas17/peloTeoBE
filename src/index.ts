@@ -10,6 +10,7 @@ import { activityRepository } from './repositories/activityRepository';
 import { ActivityService } from "./services/activityService";
 import { ActivityController } from "./controllers/activityController";
 import { activityRoutes } from './routes/activityRoutes';
+//import { recoveryRoutes } from './routes/recoveryRoutes'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,7 @@ AppDataSource.initialize().then(async () => {
     app.use(express.json());
     app.use('/users', routes);
     app.use('/activity', actRoutes);
+    //app.use('/recovery', recoveryRoutes);
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }).catch(error => {
